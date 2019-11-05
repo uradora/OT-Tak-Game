@@ -1,6 +1,6 @@
-# Ot-laskarit
+# Ot-tehtävät
 
-Tässä on kurssin _ohjelmistotekniikka2019_ **viikon 1 laskarit**
+Tässä on kurssin _ohjelmistotekniikka2019_ **viikon 1 tehtävät**
 
 ## Viikko 1
 
