@@ -11,8 +11,8 @@ public class MaksukorttiTest {
 
     @Before
     public void setUp() {
-        kortti = new Maksukortti(10);
-        kassapaate = new Kassapaate();
+        this.kortti = new Maksukortti(10);
+        this.kassapaate = new Kassapaate();
     }
 
     @Test
