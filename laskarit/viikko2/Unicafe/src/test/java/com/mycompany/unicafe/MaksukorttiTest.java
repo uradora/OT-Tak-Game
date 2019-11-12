@@ -56,4 +56,10 @@ public class MaksukorttiTest {
         boolean rahaEiRiittanyt = kassapaate.syoEdullisesti(kortti);
         assertFalse(rahaEiRiittanyt);
     }
+    
+    @Test
+    public void eiVoidaOttaaRahaaJosSaldoEiRiita() {
+        boolean otettiinkoRahaa = kortti.otaRahaa(100);
+        assertFalse(otettiinkoRahaa);
+    }
 }

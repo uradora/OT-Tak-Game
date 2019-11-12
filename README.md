@@ -10,7 +10,7 @@ Here are links to the exercises in course _ohjelmistotekniikka2019_.
 
 ## Week 2
 
-[Maksukortti ja Kassapaate -testit](https://github.com/uradora/ot-harjoitusty-/tree/master/laskarit/viikko2/Unicafe/src/test/java/com/mycompany/unicafe)
+[Maksukortti and Kassapaate -tests](https://github.com/uradora/ot-harjoitusty-/tree/master/laskarit/viikko2/Unicafe/src/test/java/com/mycompany/unicafe)
 
 # Documentation
 
