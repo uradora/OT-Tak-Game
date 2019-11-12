@@ -1,12 +1,12 @@
-**# OT Virtual Tak Game**
+# OT Virtual Tak Game
 
-# Software requirements specification
+## Software requirements specification
 
-## Description
+### Description
 
 This software is a virtual version of the game Tak, a board game implemented by Cheapass Games. The game was first introduced in the book series Kingkiller Chronicles by Patrick Rothfuss. The rules of Tak can be found [here](http://cheapass.com/wp-content/uploads/2016/07/Tak-Beta-Rules.pdf). This version of the game will include at least a graphical user interface and simple game logic that can be expanded over time.
 
-## Basic functionality
+### Basic functionality
 
 - GUI:
 	- The first version will have a 3x3 game board.
@@ -18,7 +18,7 @@ This software is a virtual version of the game Tak, a board game implemented by 
 	- The first version will only feature normal game pieces, played flat on the board. 
 	- After every turn, the game will check to see if any win conditions have occurred. If they have, the game ends.
 
-## Functionality to be added
+### Functionality to be added
 
 - Options for larger game boards (4x4, 5x5 and 6x6 in size).
 - As the first version of the game will only feature normal flatstones, functionality for playing standing stones and capstones will have to be added later.
