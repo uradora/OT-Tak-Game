@@ -1,18 +1,11 @@
-# OT-exercises
+# Tak Game
 
-Here are links to the exercises in course _ohjelmistotekniikka2019_.
+This software is a virtual version of the game Tak, a board game implemented by Cheapass Games. The game was first introduced in the book series Kingkiller Chronicles by Patrick Rothfuss. The rules of Tak can be found [here](http://cheapass.com/wp-content/uploads/2016/07/Tak-Beta-Rules.pdf). This version of the game will include at least a graphical user interface and simple game logic that can be expanded over time.
 
-## Week 1
+## Documentation
 
-[Komentorivi](https://github.com/uradora/ot-harjoitusty-/blob/master/laskarit/viikko1/komentorivi.txt)
+[Software requirements specification] (https://github.com/uradora/OT-Tak-Game/blob/master/documentation/softwarerequiments.md)
+[Timesheet] (https://github.com/uradora/OT-Tak-Game/blob/master/documentation/timesheet.md]
 
-[Git log](https://github.com/uradora/ot-harjoitusty-/blob/master/laskarit/viikko1/gitlog.txt)
 
-## Week 2
-
-[Maksukortti and Kassapaate -tests](https://github.com/uradora/ot-harjoitusty-/tree/master/laskarit/viikko2/Unicafe/src/test/java/com/mycompany/unicafe)
-
-# Documentation
-
-[Time sheet](https://github.com/uradora/ot-harjoitusty-/blob/master/documentation/timesheet.md)
 
