@@ -9,4 +9,4 @@
 | 24.11.| 1    | revising JavaFX  |  
 | 25.11.| 4    | scrapping the first version and starting a different one from scratch  |  
 | 26.11.| 1,5  | debugging the second version and trying to make it functional  |  
-| total | 10,5 | |   
+| total | 17   |   
