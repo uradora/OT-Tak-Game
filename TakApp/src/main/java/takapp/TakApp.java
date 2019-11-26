@@ -48,8 +48,6 @@ public class TakApp extends Application {
         return root;
     }
     
-    //todo: set on mouceclicked: makepiece
-    
     @Override
     public void start(Stage primaryStage) throws Exception {
         Scene scene = new Scene(createContent());
@@ -58,17 +56,12 @@ public class TakApp extends Application {
         primaryStage.show();
     }
     
-    public static Piece makePiece(String color, double x, double y) {
-        Piece piece = new Piece(color, x, y);
-        
-        return piece;
-    }
-    
-    public static void setPiece(Piece piece, double x, double y) {
-        //piece.relocate(x * TILE_SIZE, y * TILE_SIZE);
+    public static void updateBoard(Piece piece, int x, int y) {
+        //gameBoard[x][y] = tile;
+        //tileGroup.getChildren().add(tile);
         pieceGroup.getChildren().add(piece);
-        //gameBoard[x][y] = piece;
     }
+
     public static void main(String[] args) {launch(TakApp.class); }
  
 }

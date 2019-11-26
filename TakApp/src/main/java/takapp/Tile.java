@@ -9,6 +9,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import domain.GameLogic;
+import static takapp.TakApp.TILE_SIZE;
 
 /**
  *
@@ -36,16 +37,21 @@ public class Tile extends Rectangle {
         setFill(imagePattern);
         
         setOnMousePressed(e -> {
-            mouseX = e.getSceneX();
-            mouseY = e.getSceneY();
-            
-            System.out.println(mouseX);
-            System.out.println(mouseY);
-            
             String pieceColor = logic.placePiece();
-            Piece piece = TakApp.makePiece(pieceColor, mouseX, mouseY);
-            TakApp.setPiece(piece, mouseX, mouseY);
+            Piece piece = makePiece(pieceColor, x, y);
+            setPiece(piece, x, y);
         });
+    }
+    
+    private Piece makePiece(String color, int x, int y) {
+        Piece piece = new Piece(color, x, y);
+        
+        return piece;
+    }
+    
+    private void setPiece(Piece piece, int x, int y) {
+        piece.relocate(x * TILE_SIZE, y * TILE_SIZE);
+        TakApp.updateBoard(piece, x, y);
     }
     
 }
