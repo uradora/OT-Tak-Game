@@ -5,16 +5,10 @@
  */
 package takapp;
 
-import javafx.geometry.Pos;
-import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Rectangle;
 
-import static takapp.TakApp.TILE_SIZE;
 
 /**
  *
@@ -23,10 +17,7 @@ import static takapp.TakApp.TILE_SIZE;
 public class Piece extends StackPane {
     
     private String color;
-    
-    public String getColor() {
-        return color;
-    }
+    private boolean hasPiece;
     
     public Piece(String color, double x, double y) {
         this.color = color;
@@ -35,10 +26,12 @@ public class Piece extends StackPane {
             Image white = new Image("file:src/main/res/white.png");
             ImageView whiteView = new ImageView(white);
             whiteView.relocate(x * TakApp.TILE_SIZE, y * TakApp.TILE_SIZE);
+            this.hasPiece = true;
             getChildren().addAll(whiteView);
         } else if (this.color.equals("black")) {
             Image black = new Image("file:src/main/res/black.png");
             ImageView blackView = new ImageView(black);
+            this.hasPiece = true;
             getChildren().addAll(blackView);
         } else {
             getChildren().addAll();
