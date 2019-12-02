@@ -12,6 +12,7 @@ package domain;
 public class GameLogic {
     
     private String playerTurn;
+    private boolean gameEnded;
     
     public GameLogic() {
         this.playerTurn = "white";

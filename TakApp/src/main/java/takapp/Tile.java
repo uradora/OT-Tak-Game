@@ -17,12 +17,19 @@ import static takapp.TakApp.TILE_SIZE;
  */
 public class Tile extends Rectangle {
     
+    
+    //todo: tile will have to be able to hold multiple pieces
+    
     private Piece piece;
     
     private double mouseX, mouseY;
     
     public boolean hasPiece() {
         return piece != null;
+    }
+    
+    public Piece getPiece() {
+        return this.piece;
     }
     
     public Tile(GameLogic logic, int x, int y) {
@@ -36,11 +43,19 @@ public class Tile extends Rectangle {
         ImagePattern imagePattern = new ImagePattern(tilebg);
         setFill(imagePattern);
         
-        setOnMousePressed(e -> {
-            String pieceColor = logic.placePiece();
-            Piece piece = makePiece(pieceColor, x, y);
-            setPiece(piece, x, y);
-        });
+        if (this.hasPiece() == false) {
+        
+            setOnMousePressed(e -> {
+                String pieceColor = logic.placePiece();
+                Piece piece = makePiece(pieceColor, x, y);
+                this.piece = piece;
+                setPiece(this, piece, x, y);
+            });
+            
+        } else if (this.hasPiece() == true) {
+            
+            
+        }
     }
     
     private Piece makePiece(String color, int x, int y) {
@@ -49,9 +64,15 @@ public class Tile extends Rectangle {
         return piece;
     }
     
-    private void setPiece(Piece piece, int x, int y) {
+    public void setPiece(Tile tile, Piece piece, int x, int y) {
         piece.relocate(x * TILE_SIZE, y * TILE_SIZE);
-        TakApp.updateBoard(piece, x, y);
+        
+        TakApp.updateBoard(tile, piece, x, y);
     }
     
+    public void removePiece(Tile tile, Piece piece, int x, int y) {
+        this.piece = null;
+        
+        TakApp.updateBoard(tile, piece, x, y);
+    }
 }

@@ -22,9 +22,9 @@ public class TakApp extends Application {
     
     //todo: add options for board size
     public static final int TILE_SIZE = 100;
-    public static final int WIDTH = 3;
-    public static final int HEIGHT = 3;
-    private Tile[][] gameBoard = new Tile[WIDTH][HEIGHT];
+    public static final int WIDTH = 4;
+    public static final int HEIGHT = 4;
+    public static Tile[][] gameBoard = new Tile[WIDTH][HEIGHT];
     
     public static Group tileGroup = new Group();
     public static Group pieceGroup = new Group();
@@ -56,10 +56,12 @@ public class TakApp extends Application {
         primaryStage.show();
     }
     
-    public static void updateBoard(Piece piece, int x, int y) {
-        //gameBoard[x][y] = tile;
-        //tileGroup.getChildren().add(tile);
-        pieceGroup.getChildren().add(piece);
+    //todo: what happens here when removing pieces?
+    public static void updateBoard(Tile tile, Piece piece, int x, int y) {
+        gameBoard[x][y] = tile;
+        if (!pieceGroup.getChildren().contains(piece)) {
+             pieceGroup.getChildren().add(piece);
+        }
     }
 
     public static void main(String[] args) {launch(TakApp.class); }
