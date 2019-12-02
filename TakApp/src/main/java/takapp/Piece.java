@@ -8,10 +8,9 @@ package takapp;
 import javafx.scene.layout.StackPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import static takapp.TakApp.TILE_SIZE;
-import static takapp.TakApp.WIDTH;
+import domain.GameLogic;
 import static takapp.TakApp.HEIGHT;
-
+import static takapp.TakApp.WIDTH;
 
 /**
  *
@@ -26,6 +25,8 @@ public class Piece extends StackPane {
     private int oldX;
     private int oldY;
 
+    private GameLogic logic = new GameLogic();
+    
     public String getColor() {
         return this.color;
     } 
@@ -78,9 +79,6 @@ public class Piece extends StackPane {
         
         setOnMouseReleased(e -> {
             
-            //todo: check if valid move here
-            //todo: update this on tile
-
             double mouseX = e.getSceneX();
             double mouseY = e.getSceneY();
             
@@ -90,11 +88,16 @@ public class Piece extends StackPane {
             int newX = (int) Math.floor(mouseX / 100.0);
             int newY = (int) Math.floor(mouseY / 100.0);
             
-            setX(newX);
-            setY(newY);
+            boolean validMove = logic.isValidMove(this, oldX, oldY, newX, newY);
             
-            TakApp.updateBoardAfterMove(this, oldX, oldY, newX, newY);
-            
+            if (validMove) {
+                setX(newX);
+                setY(newY);
+                logic.removePiece(this, oldX, oldY);
+                logic.setPiece(this, newX, newY);
+            } else {
+                logic.setPiece(this, oldX, oldY);
+            }
         });
         
     }

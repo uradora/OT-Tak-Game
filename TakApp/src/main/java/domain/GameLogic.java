@@ -28,15 +28,23 @@ public class GameLogic {
     public String checkTurn() {
         
         if (this.playerTurn.equals("white")) {
-            this.playerTurn = "black";
             return "white";
         } else if (this.playerTurn.equals("black")) {
-            this.playerTurn = "white";
             return "black";
         } else {
             return null;
         }
     
+    }
+    
+    public void switchTurns() {
+        
+        if (this.playerTurn.equals("white")) {
+            this.playerTurn = "black";
+        } else if (this.playerTurn.equals("black")) {
+            this.playerTurn = "white";
+        }
+
     }
     
     public Piece makePiece(String color, int x, int y) {
@@ -48,30 +56,25 @@ public class GameLogic {
     public void setPiece(Piece piece, int x, int y) {
         piece.relocate(x * TILE_SIZE, y * TILE_SIZE);
         
-        TakApp.updateBoardAfterPlace(piece, x, y);
+        TakApp.updateBoard(piece, x, y);
+    }
+    
+    public void removePiece(Piece piece, int x, int y) {
+        TakApp.gameBoard[x][y].piece = null;
     }
 
-    //todo: replace with is valid move
-    /*
-    public void movePiece(Piece piece, double oldX, double oldY, double mouseX, double mouseY) {
+    public boolean isValidMove(Piece piece, int oldX, int oldY, int newX, int newY) {
         
-            int oldBoardX = (int) Math.floor(mouseX / 100.0);
-            int oldBoardY = (int) Math.floor(mouseY / 100.0);
-            int boardX = (int) Math.floor(mouseX / 100.0);
-            int boardY = (int) Math.floor(mouseY / 100.0);
-
-            Tile oldTile = TakApp.gameBoard[oldBoardX][oldBoardY];
-            Tile destinationTile = TakApp.gameBoard[boardX][boardY];
+            Tile destinationTile = TakApp.gameBoard[newX][newY];
             
             if (destinationTile.hasPiece()) {
-                setPiece(oldTile, piece, oldBoardX, oldBoardY);
-            } else if (boardX < 0 || boardX > WIDTH || boardY < 0 || boardY > HEIGHT) {
-                setPiece(oldTile, piece, oldBoardX, oldBoardY);
+                return false;
+            } else if (newX < 0 || newX > WIDTH || newY < 0 || newY > HEIGHT) {
+                return false;
             } else {
-                setPiece(destinationTile, piece, boardX, boardY);
+                return true;
             }
 
-    } 
-    */
+        }
 }
 

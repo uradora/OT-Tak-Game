@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import takapp.Piece;
 
+
 /**
  *
  * @author meriraja
@@ -33,11 +34,12 @@ public class GameLogicTest {
 
     @Test
     public void blackTurnIsAfterWhiteTurn() {
-        gamelogic.checkTurn();
+        gamelogic.switchTurns();
         String playerTurn = gamelogic.checkTurn();
         assertEquals(playerTurn, "black");
     }
     
+    /*
     @Test
     public void aNewlyMadePieceIsWhite() {
         String pieceColor = gamelogic.checkTurn();
@@ -45,5 +47,28 @@ public class GameLogicTest {
         pieceColor = piece.getColor();  
         assertEquals(pieceColor, "white");
     }
-
+    */
+    
+    /*
+    @Test 
+    public void gameTurnSwitchesAfterAPieceIsSet() {
+        Piece piece = gamelogic.makePiece(gamelogic.checkTurn(), 0, 0);
+        gamelogic.setPiece(piece, 0, 0);
+        String playerTurn = gamelogic.checkTurn();
+        assertEquals(playerTurn, "black");
+    }
+    */
+    
+    /*
+    @Test
+    public void removePieceMakesThatTileEmpty() {
+    }
+    */
+    
+    @Test
+    public void movingOutOfBoardBoundsIsNotAValidMove() {
+        Piece piece = gamelogic.makePiece(gamelogic.checkTurn(), 0, 0);
+        boolean validMove = gamelogic.isValidMove(piece, 0, 0, -1, 6);
+        assertFalse(validMove);
+    }
 }

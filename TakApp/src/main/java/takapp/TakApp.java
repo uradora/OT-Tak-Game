@@ -56,19 +56,7 @@ public class TakApp extends Application {
         primaryStage.show();
     }
     
-    public static void updateBoardAfterPlace(Piece piece, int x, int y) {
-        gameBoard[x][y].piece = piece;
-        
-        //todo: write tests
-        System.out.println(gameBoard[x][y].hasPiece());
-        
-        if (!pieceGroup.getChildren().contains(piece)) {
-            pieceGroup.getChildren().add(piece);
-        }
-    }
-    
-    public static void updateBoardAfterMove(Piece piece, int oldX, int oldY, int x, int y) {
-        gameBoard[oldX][oldY].piece = null;
+    public static void updateBoard(Piece piece, int x, int y) {
         
         gameBoard[x][y].piece = piece; 
         
@@ -81,9 +69,10 @@ public class TakApp extends Application {
         if (!pieceGroup.getChildren().contains(piece)) {
             pieceGroup.getChildren().add(piece);
         }
+        
+        logic.switchTurns();
     }
-
+    
     public static void main(String[] args) { 
         launch(TakApp.class); }
- 
 }
