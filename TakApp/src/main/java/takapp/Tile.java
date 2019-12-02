@@ -20,9 +20,7 @@ public class Tile extends Rectangle {
     
     //todo: tile will have to be able to hold multiple pieces
     
-    private Piece piece;
-    
-    private double mouseX, mouseY;
+    public Piece piece;
     
     public boolean hasPiece() {
         return piece != null;
@@ -47,32 +45,11 @@ public class Tile extends Rectangle {
         
             setOnMousePressed(e -> {
                 String pieceColor = logic.checkTurn();
-                Piece piece = makePiece(pieceColor, x, y);
+                Piece piece = logic.makePiece(pieceColor, x, y);
                 this.piece = piece;
-                setPiece(this, piece, x, y);
+                logic.setPiece(piece, x, y);
             });
             
-        } else if (this.hasPiece() == true) {
-           
-            
         }
-    }
-    
-    private Piece makePiece(String color, int x, int y) {
-        Piece piece = new Piece(color, x, y);
-        
-        return piece;
-    }
-    
-    public void setPiece(Tile tile, Piece piece, int x, int y) {
-        piece.relocate(x * TILE_SIZE, y * TILE_SIZE);
-        
-        TakApp.updateBoard(tile, piece, x, y);
-    }
-    
-    public void removePiece(Tile tile, Piece piece, int x, int y) {
-        this.piece = null;
-        
-        TakApp.updateBoard(tile, piece, x, y);
     }
 }

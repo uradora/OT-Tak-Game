@@ -29,7 +29,7 @@ public class TakApp extends Application {
     public static Group tileGroup = new Group();
     public static Group pieceGroup = new Group();
     
-    private GameLogic logic = new GameLogic();
+    public static GameLogic logic = new GameLogic();
     
     private Parent createContent() {
         Pane root = new Pane();
@@ -56,9 +56,28 @@ public class TakApp extends Application {
         primaryStage.show();
     }
     
-    //todo: what happens here when removing pieces?
-    public static void updateBoard(Tile tile, Piece piece, int x, int y) {
-        gameBoard[x][y] = tile;
+    public static void updateBoardAfterPlace(Piece piece, int x, int y) {
+        gameBoard[x][y].piece = piece;
+        
+        //todo: write tests
+        System.out.println(gameBoard[x][y].hasPiece());
+        
+        if (!pieceGroup.getChildren().contains(piece)) {
+            pieceGroup.getChildren().add(piece);
+        }
+    }
+    
+    public static void updateBoardAfterMove(Piece piece, int oldX, int oldY, int x, int y) {
+        gameBoard[oldX][oldY].piece = null;
+        
+        gameBoard[x][y].piece = piece; 
+        
+        //todo: write tests
+        System.out.println(gameBoard[x][y].hasPiece());
+        System.out.println(x);
+        System.out.println(y);
+
+        
         if (!pieceGroup.getChildren().contains(piece)) {
             pieceGroup.getChildren().add(piece);
         }

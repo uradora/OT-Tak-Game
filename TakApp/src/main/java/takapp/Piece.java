@@ -20,12 +20,36 @@ import static takapp.TakApp.HEIGHT;
 public class Piece extends StackPane {
     
     private String color;
+    private int x;
+    private int y;
     
-    private double mouseX, mouseY;
-    private int boardX, boardY;
+    private int oldX;
+    private int oldY;
+
+    public String getColor() {
+        return this.color;
+    } 
     
-    public Piece(String color, double x, double y) {
+    public void setX(int x) {
+        this.x = x;
+    }
+    
+    public void setY(int y) {
+        this.y = y;
+    }
+    
+    public int getX() {
+        return this.x;
+    }
+    
+    public int getY() {
+        return this.y;
+    }
+
+    public Piece(String color, int x, int y) {
         this.color = color;
+        setX(x);
+        setY(y);
         
         if (this.color.equals("white")) {
             Image white = new Image("file:src/main/res/white.png");
@@ -39,39 +63,38 @@ public class Piece extends StackPane {
             getChildren().addAll();
         }
         
+       
         setOnMousePressed(e -> {
-            mouseX = e.getSceneX();
-            mouseY = e.getSceneY();
+            oldX = this.x;
+            oldY = this.y;
+            System.out.println(oldX);
+            System.out.println(oldY);
         });
+        
         
         setOnMouseDragged(e -> {
             relocate(e.getSceneX(), e.getSceneY());
         });
         
-        //check which tile the piece is in after moving. 
-        //why does the tile never return to original tile?
         setOnMouseReleased(e -> {
-            double oldX = mouseX;
-            double oldY = mouseY;
-            System.out.println(mouseX);
-            System.out.println(mouseY);
-            mouseX = e.getSceneX();
-            mouseY = e.getSceneY();
-            int oldBoardX = (int) Math.floor(mouseX / 100.0);
-            int oldBoardY = (int) Math.floor(mouseY / 100.0);
-            System.out.println(oldBoardX);
-            System.out.println(oldBoardY);
-            boardX = (int) Math.floor(mouseX / 100.0);
-            boardY = (int) Math.floor(mouseY / 100.0);
-            Tile oldTile = TakApp.gameBoard[oldBoardX][oldBoardY];
-            Tile destinationTile = TakApp.gameBoard[boardX][boardY];
-            if (destinationTile.hasPiece()) {
-                oldTile.setPiece(oldTile, this, oldBoardX, oldBoardY);
-            } else if (boardX < 0 || boardX > WIDTH || boardY < 0 || boardY > HEIGHT) {
-                oldTile.setPiece(oldTile, this, oldBoardX, oldBoardY);
-            } else {
-                destinationTile.setPiece(destinationTile, this, boardX, boardY);
-            }
+            
+            //todo: check if valid move here
+            //todo: update this on tile
+
+            double mouseX = e.getSceneX();
+            double mouseY = e.getSceneY();
+            
+            System.out.println(Math.floor(mouseX / 100.0));
+            System.out.println(Math.floor(mouseY / 100.0));
+            
+            int newX = (int) Math.floor(mouseX / 100.0);
+            int newY = (int) Math.floor(mouseY / 100.0);
+            
+            setX(newX);
+            setY(newY);
+            
+            TakApp.updateBoardAfterMove(this, oldX, oldY, newX, newY);
+            
         });
         
     }
