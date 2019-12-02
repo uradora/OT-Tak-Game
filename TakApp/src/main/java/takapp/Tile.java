@@ -37,7 +37,7 @@ public class Tile extends Rectangle {
         setWidth(TakApp.TILE_SIZE);
         setHeight(TakApp.TILE_SIZE);
         
-        relocate(x * TakApp.TILE_SIZE, y* TakApp.TILE_SIZE);
+        relocate(x * TakApp.TILE_SIZE, y * TakApp.TILE_SIZE);
         
         Image tilebg = new Image("file:src/main/res/tile.jpg");
         ImagePattern imagePattern = new ImagePattern(tilebg);
@@ -46,14 +46,14 @@ public class Tile extends Rectangle {
         if (this.hasPiece() == false) {
         
             setOnMousePressed(e -> {
-                String pieceColor = logic.placePiece();
+                String pieceColor = logic.checkTurn();
                 Piece piece = makePiece(pieceColor, x, y);
                 this.piece = piece;
                 setPiece(this, piece, x, y);
             });
             
         } else if (this.hasPiece() == true) {
-            
+           
             
         }
     }

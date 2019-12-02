@@ -53,16 +53,16 @@ public class Piece extends StackPane {
         setOnMouseReleased(e -> {
             double oldX = mouseX;
             double oldY = mouseY;
-            System.out.println(mouseX + " prööh");
+            System.out.println(mouseX);
             System.out.println(mouseY);
             mouseX = e.getSceneX();
             mouseY = e.getSceneY();
-            int oldBoardX = (int)Math.floor(mouseX / 100.0);
-            int oldBoardY = (int)Math.floor(mouseY / 100.0);
+            int oldBoardX = (int) Math.floor(mouseX / 100.0);
+            int oldBoardY = (int) Math.floor(mouseY / 100.0);
             System.out.println(oldBoardX);
             System.out.println(oldBoardY);
-            boardX = (int)Math.floor(mouseX / 100.0);
-            boardY = (int)Math.floor(mouseY / 100.0);
+            boardX = (int) Math.floor(mouseX / 100.0);
+            boardY = (int) Math.floor(mouseY / 100.0);
             Tile oldTile = TakApp.gameBoard[oldBoardX][oldBoardY];
             Tile destinationTile = TakApp.gameBoard[boardX][boardY];
             if (destinationTile.hasPiece()) {

@@ -60,10 +60,11 @@ public class TakApp extends Application {
     public static void updateBoard(Tile tile, Piece piece, int x, int y) {
         gameBoard[x][y] = tile;
         if (!pieceGroup.getChildren().contains(piece)) {
-             pieceGroup.getChildren().add(piece);
+            pieceGroup.getChildren().add(piece);
         }
     }
 
-    public static void main(String[] args) {launch(TakApp.class); }
+    public static void main(String[] args) { 
+        launch(TakApp.class); }
  
 }

@@ -18,15 +18,12 @@ public class GameLogic {
         this.playerTurn = "white";
     }
     
-    //logic for placing a game piece
-    //todo: check if the move is valid
-    public String placePiece() {
+    public String checkTurn() {
         
         if (this.playerTurn.equals("white")) {
             this.playerTurn = "black";
             return "white";
-        }
-        else if (this.playerTurn.equals("black")) {
+        } else if (this.playerTurn.equals("black")) {
             this.playerTurn = "white";
             return "black";
         } else {
