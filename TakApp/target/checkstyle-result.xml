@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.11.2">
+<file name="/home/meriraja/Documents/ot/ot-harjoitustyö/TakApp/src/main/java/takapp/Piece.java">
+</file>
+<file name="/home/meriraja/Documents/ot/ot-harjoitustyö/TakApp/src/main/java/takapp/Tile.java">
+<error line="55" column="45" severity="error" message="Must have at least one statement." source="com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck"/>
+</file>
+<file name="/home/meriraja/Documents/ot/ot-harjoitustyö/TakApp/src/main/java/takapp/TakApp.java">
+<error line="68" severity="error" message="&apos;method def rcurly&apos; have incorrect indentation level 30, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+</file>
+<file name="/home/meriraja/Documents/ot/ot-harjoitustyö/TakApp/src/main/java/domain/GameLogic.java">
+</file>
+</checkstyle>

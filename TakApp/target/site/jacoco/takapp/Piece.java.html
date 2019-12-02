@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Piece.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TakApp</a> &gt; <a href="index.source.html" class="el_package">takapp</a> &gt; <span class="el_source">Piece.java</span></div><h1>Piece.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package takapp;
+
+import javafx.scene.layout.StackPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import static takapp.TakApp.TILE_SIZE;
+import static takapp.TakApp.WIDTH;
+import static takapp.TakApp.HEIGHT;
+
+
+/**
+ *
+ * @author meriraja
+ */
+public class Piece extends StackPane {
+    
+    private String color;
+    
+    private double mouseX, mouseY;
+    private int boardX, boardY;
+    
+<span class="nc" id="L27">    public Piece(String color, double x, double y) {</span>
+<span class="nc" id="L28">        this.color = color;</span>
+        
+<span class="nc bnc" id="L30" title="All 2 branches missed.">        if (this.color.equals(&quot;white&quot;)) {</span>
+<span class="nc" id="L31">            Image white = new Image(&quot;file:src/main/res/white.png&quot;);</span>
+<span class="nc" id="L32">            ImageView whiteView = new ImageView(white);</span>
+<span class="nc" id="L33">            getChildren().addAll(whiteView);</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">        } else if (this.color.equals(&quot;black&quot;)) {</span>
+<span class="nc" id="L35">            Image black = new Image(&quot;file:src/main/res/black.png&quot;);</span>
+<span class="nc" id="L36">            ImageView blackView = new ImageView(black);</span>
+<span class="nc" id="L37">            getChildren().addAll(blackView);</span>
+<span class="nc" id="L38">        } else {</span>
+<span class="nc" id="L39">            getChildren().addAll();</span>
+        }
+        
+<span class="nc" id="L42">        setOnMousePressed(e -&gt; {</span>
+<span class="nc" id="L43">            mouseX = e.getSceneX();</span>
+<span class="nc" id="L44">            mouseY = e.getSceneY();</span>
+<span class="nc" id="L45">        });</span>
+        
+<span class="nc" id="L47">        setOnMouseDragged(e -&gt; {</span>
+<span class="nc" id="L48">            relocate(e.getSceneX(), e.getSceneY());</span>
+<span class="nc" id="L49">        });</span>
+        
+        //check which tile the piece is in after moving. 
+        //why does the tile never return to original tile?
+<span class="nc" id="L53">        setOnMouseReleased(e -&gt; {</span>
+<span class="nc" id="L54">            double oldX = mouseX;</span>
+<span class="nc" id="L55">            double oldY = mouseY;</span>
+<span class="nc" id="L56">            System.out.println(mouseX);</span>
+<span class="nc" id="L57">            System.out.println(mouseY);</span>
+<span class="nc" id="L58">            mouseX = e.getSceneX();</span>
+<span class="nc" id="L59">            mouseY = e.getSceneY();</span>
+<span class="nc" id="L60">            int oldBoardX = (int)Math.floor(mouseX / 100.0);</span>
+<span class="nc" id="L61">            int oldBoardY = (int)Math.floor(mouseY / 100.0);</span>
+<span class="nc" id="L62">            System.out.println(oldBoardX);</span>
+<span class="nc" id="L63">            System.out.println(oldBoardY);</span>
+<span class="nc" id="L64">            boardX = (int)Math.floor(mouseX / 100.0);</span>
+<span class="nc" id="L65">            boardY = (int)Math.floor(mouseY / 100.0);</span>
+<span class="nc" id="L66">            Tile oldTile = TakApp.gameBoard[oldBoardX][oldBoardY];</span>
+<span class="nc" id="L67">            Tile destinationTile = TakApp.gameBoard[boardX][boardY];</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            if (destinationTile.hasPiece()) {</span>
+<span class="nc" id="L69">                oldTile.setPiece(oldTile, this, oldBoardX, oldBoardY);</span>
+<span class="nc bnc" id="L70" title="All 8 branches missed.">            } else if (boardX &lt; 0 || boardX &gt; WIDTH || boardY &lt; 0 || boardY &gt; HEIGHT) {</span>
+<span class="nc" id="L71">                oldTile.setPiece(oldTile, this, oldBoardX, oldBoardY);</span>
+            } else {
+<span class="nc" id="L73">                destinationTile.setPiece(destinationTile, this, boardX, boardY);</span>
+            }
+<span class="nc" id="L75">        });</span>
+        
+<span class="nc" id="L77">    }</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>
