@@ -53,11 +53,11 @@ public class Piece extends StackPane {
         setY(y);
         
         if (this.color.equals("white")) {
-            Image white = new Image("file:src/main/res/white.png");
+            Image white = new Image(getClass().getResourceAsStream("/images/white.png"));
             ImageView whiteView = new ImageView(white);
             getChildren().addAll(whiteView);
         } else if (this.color.equals("black")) {
-            Image black = new Image("file:src/main/res/black.png");
+            Image black = new Image(getClass().getResourceAsStream("/images/black.png"));
             ImageView blackView = new ImageView(black);
             getChildren().addAll(blackView);
         } else {

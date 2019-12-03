@@ -36,8 +36,7 @@ public class Tile extends Rectangle {
         setHeight(TakApp.TILE_SIZE);
         
         relocate(x * TakApp.TILE_SIZE, y * TakApp.TILE_SIZE);
-        
-        Image tilebg = new Image("file:src/main/res/tile.jpg");
+        Image tilebg = new Image(getClass().getResourceAsStream("/images/tile.jpg"));
         ImagePattern imagePattern = new ImagePattern(tilebg);
         setFill(imagePattern);
         
