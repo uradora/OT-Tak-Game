@@ -12,4 +12,5 @@
 | 30.11.  | 2      | debugging the second version some more |   
 | 1.12.   | 2,5    | making a new outline and revising some major functionalities  |   
 | 2.12.   | 4      | adding new tests and functionalities, major revisions of code  |   
+| 3.12.   | 3      | debugging maven, editing pom.xml, making the first github release  |   
 | total   | 25,5   |   
