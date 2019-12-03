@@ -9,7 +9,7 @@ This software is a virtual version of the game Tak, a board game implemented by 
 ### Basic functionality
 
 - GUI:
-	- The first version will have a 4x game board.
+	- The first version will have a 4x4 game board.
 	- The game board will have tiles and game pieces that are movable on the board.
 	- The GUI will show a track of how many game pieces the players have left and how many times each player has won.
 - Game logic:
