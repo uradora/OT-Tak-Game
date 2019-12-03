@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import takapp.Piece;
+import takapp.TakApp;
 
 
 /**
@@ -66,9 +67,14 @@ public class GameLogicTest {
     */
     
     @Test
-    public void movingOutOfBoardBoundsIsNotAValidMove() {
-        Piece piece = gamelogic.makePiece(gamelogic.checkTurn(), 0, 0);
-        boolean validMove = gamelogic.isValidMove(piece, 0, 0, -1, 6);
+    public void movingOutOfBoardBoundsReturnFalse() {
+        boolean validMove = gamelogic.isValidMove(0, 0, 5, 6);
+        assertFalse(validMove);
+    }
+    
+    @Test
+    public void ifATileIsNotInitialisedReturnFalse() {
+        boolean validMove = gamelogic.isValidMove(0, 0, 2, 2);
         assertFalse(validMove);
     }
 }

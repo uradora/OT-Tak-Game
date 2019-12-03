@@ -63,13 +63,13 @@ public class GameLogic {
         TakApp.gameBoard[x][y].piece = null;
     }
 
-    public boolean isValidMove(Piece piece, int oldX, int oldY, int newX, int newY) {
-        
-            Tile destinationTile = TakApp.gameBoard[newX][newY];
+    public boolean isValidMove(int oldX, int oldY, int newX, int newY) {
             
-            if (destinationTile.hasPiece()) {
+            if (newX < 0 || newX > WIDTH || newY < 0 || newY > HEIGHT) {
                 return false;
-            } else if (newX < 0 || newX > WIDTH || newY < 0 || newY > HEIGHT) {
+            } else if (TakApp.gameBoard[newX][newY] == null) {
+                return false;
+            } else if (TakApp.gameBoard[newX][newY].hasPiece()) {
                 return false;
             } else {
                 return true;

@@ -88,7 +88,7 @@ public class Piece extends StackPane {
             int newX = (int) Math.floor(mouseX / 100.0);
             int newY = (int) Math.floor(mouseY / 100.0);
             
-            boolean validMove = logic.isValidMove(this, oldX, oldY, newX, newY);
+            boolean validMove = logic.isValidMove(oldX, oldY, newX, newY);
             
             if (validMove) {
                 setX(newX);
