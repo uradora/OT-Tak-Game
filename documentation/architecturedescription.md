@@ -10,7 +10,11 @@ The main UI class, "TakApp", has a single Scene object that contains (for the fi
 
 ## Game logic
 
-The GameLogic-class keeps track of player turn (black or white) and how many game pieces each of the players have left to place on the board. Each player starts the game with 15 pieces. The class also checks if a move is valid whenever a piece is moved, and prevents a move if it is not valid.
+The GameLogic class keeps track of player turn (black or white) and how many game pieces each of the players have left to place on the board. Each player starts the game with 15 pieces. The class also checks if a move is valid whenever a piece is moved, and prevents a move if it is not valid.
+
+Below is a sequence diagram of how the Game Logic class checks if a move is valid.
+
+(https://github.com/uradora/OT-Tak-Game/blob/master/documentation/Screenshot_2019-12-03%20Untitled.png)
 
 ## Permanent storage of data
 
