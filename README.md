@@ -12,5 +12,28 @@ This software is a virtual version of the game Tak, a board game implemented by 
 
 [Release week 5](https://github.com/uradora/OT-Tak-Game/releases/tag/viikko5)
 
+## How to use
+
+# Running the program
+
+In the terminal, open the directory which the TakApp jar file is saved in. Give the following command:
+
+  java -jar TakApp-1.0.jar 
+
+Or, clone the project directory from GitHub and give the following command in the project root:
+
+  mvn compile exec:java -Dexec.mainClass=takapp.Main
+  
+# Testing
+
+You can test the program by running the following command in the project root:
+
+  mvn test
+  
+Test coverage report can be generated with the command:
+
+  mvn jacoco:report
+  
+You can find the report in the directory 
 
 
