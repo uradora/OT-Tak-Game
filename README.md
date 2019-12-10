@@ -18,22 +18,51 @@ This software is a virtual version of the game Tak, a board game implemented by 
 
 In the terminal, open the directory which the TakApp jar file is saved in. Give the following command:
 
-  java -jar TakApp-1.0.jar 
+```console
+java -jar TakApp-1.0.jar 
+```
 
 Or, clone the project directory from GitHub and give the following command in the project root:
 
-  mvn compile exec:java -Dexec.mainClass=takapp.Main
+```console
+mvn compile exec:java -Dexec.mainClass=takapp.Main
+```
   
 # Testing
 
-You can test the program by running the following command in the project root:
+You can test the program by giving the following command in the project root:
 
-  mvn test
+```console
+mvn test
+```
   
 Test coverage report can be generated with the command:
 
-  mvn jacoco:report
+```console
+mvn jacoco:report
+```
   
-You can find the report in the directory 
+You can find the report in the directory *target/site/jacoco/index.html*.
+
+# Checkstyle
+
+You can generate a checkstyle report by giving the following command in the project root:
+
+```console
+mvn jxr:jxr checkstyle:checkstyle
+```
+
+Checkstyle errors can now be found in the directory *target/site/checkstyle.html*.
+
+# Creating a jar file
+
+You can create a jar file from the project by giving the following command in the project root:
+
+``` console
+mvn package
+```
+
+You can now find a runnable jar file in the directory *target*. The jar is named *TakApp-1.0-SNAPSHOT.jar*.
+
 
 
