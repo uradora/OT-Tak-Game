@@ -14,7 +14,7 @@ This software is a virtual version of the game Tak, a board game implemented by 
 
 ## How to use
 
-# Running the program
+### Running the program
 
 In the terminal, open the directory which the TakApp jar file is saved in. Give the following command:
 
@@ -28,7 +28,7 @@ Or, clone the project directory from GitHub and give the following command in th
 mvn compile exec:java -Dexec.mainClass=takapp.Main
 ```
   
-# Testing
+### Testing
 
 You can test the program by giving the following command in the project root:
 
@@ -44,7 +44,7 @@ mvn jacoco:report
   
 You can find the report in the directory *target/site/jacoco/index.html*.
 
-# Checkstyle
+### Checkstyle
 
 You can generate a checkstyle report by giving the following command in the project root:
 
@@ -54,7 +54,7 @@ mvn jxr:jxr checkstyle:checkstyle
 
 Checkstyle errors can now be found in the directory *target/site/checkstyle.html*.
 
-# Creating a jar file
+### Creating a jar file
 
 You can create a jar file from the project by giving the following command in the project root:
 
