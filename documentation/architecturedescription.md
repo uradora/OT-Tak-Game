@@ -14,7 +14,7 @@ The GameLogic class keeps track of player turn (black or white) and how many gam
 
 Below is a sequence diagram of how the Game Logic class checks if a move is valid.
 
-(https://github.com/uradora/OT-Tak-Game/blob/master/documentation/Screenshot_2019-12-03%20Untitled.png)
+[Sequence](https://github.com/uradora/OT-Tak-Game/blob/master/documentation/Screenshot_2019-12-03%20Untitled.png)
 
 ## Permanent storage of data
 
