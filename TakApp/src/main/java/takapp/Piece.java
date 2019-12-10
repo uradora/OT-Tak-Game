@@ -9,12 +9,11 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import domain.GameLogic;
-import static takapp.TakApp.HEIGHT;
-import static takapp.TakApp.WIDTH;
+import domain.PieceService;
 
 /**
- *
  * @author meriraja
+ * This class creates instances of the movable graphical Piece-element that is displayed on the game board
  */
 public class Piece extends StackPane {
     
@@ -24,8 +23,6 @@ public class Piece extends StackPane {
     
     private int oldX;
     private int oldY;
-
-    private GameLogic logic = new GameLogic();
     
     public String getColor() {
         return this.color;
@@ -46,11 +43,16 @@ public class Piece extends StackPane {
     public int getY() {
         return this.y;
     }
+    
+    /**
+     * Constructor for Piece, sets graphics and position. Piece is movable by dragging the mouse.
+     * @param color active player's color
+     * @param x the piece's coordinate x
+     * @param y the piece's coordinate y
+     */
 
-    public Piece(String color, int x, int y) {
+    public Piece(GameLogic logic, PieceService pieceservice, String color, int x, int y) {
         this.color = color;
-        setX(x);
-        setY(y);
         
         if (this.color.equals("white")) {
             Image white = new Image(getClass().getResourceAsStream("/images/white.png"));
@@ -93,10 +95,10 @@ public class Piece extends StackPane {
             if (validMove) {
                 setX(newX);
                 setY(newY);
-                logic.removePiece(this, oldX, oldY);
-                logic.setPiece(this, newX, newY);
+                pieceservice.removePiece(this, oldX, oldY);
+                pieceservice.setPiece(this, newX, newY);
             } else {
-                logic.setPiece(this, oldX, oldY);
+                pieceservice.setPiece(this, oldX, oldY);
             }
         });
         

@@ -40,32 +40,6 @@ public class GameLogicTest {
         assertEquals(playerTurn, "black");
     }
     
-    /*
-    @Test
-    public void aNewlyMadePieceIsWhite() {
-        String pieceColor = gamelogic.checkTurn();
-        Piece piece = gamelogic.makePiece(pieceColor, 0, 0);
-        pieceColor = piece.getColor();  
-        assertEquals(pieceColor, "white");
-    }
-    */
-    
-    /*
-    @Test 
-    public void gameTurnSwitchesAfterAPieceIsSet() {
-        Piece piece = gamelogic.makePiece(gamelogic.checkTurn(), 0, 0);
-        gamelogic.setPiece(piece, 0, 0);
-        String playerTurn = gamelogic.checkTurn();
-        assertEquals(playerTurn, "black");
-    }
-    */
-    
-    /*
-    @Test
-    public void removePieceMakesThatTileEmpty() {
-    }
-    */
-    
     @Test
     public void movingOutOfBoardBoundsReturnFalse() {
         boolean validMove = gamelogic.isValidMove(0, 0, 5, 6);
@@ -76,5 +50,20 @@ public class GameLogicTest {
     public void ifATileIsNotInitialisedReturnFalse() {
         boolean validMove = gamelogic.isValidMove(0, 0, 2, 2);
         assertFalse(validMove);
+    }
+    
+    @Test
+    public void usingAPieceReducesPlayerPiecesByOne() {
+        gamelogic.useOnePiece();
+        assertTrue(gamelogic.getPlayerPieces() == 14);
+    }
+    
+    @Test
+    public void playerPiecesLeftDisplaysCorrectAmountAtStart() {
+        assertTrue(gamelogic.getPlayerPieces() == 15);
+    }
+    
+    @Test
+    public void placingPiecesMakesPlayerPiecesDisplayLess() {
     }
 }

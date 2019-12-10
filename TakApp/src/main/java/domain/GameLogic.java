@@ -7,23 +7,38 @@ package domain;
 
 import takapp.Piece;
 import takapp.TakApp;
-import static takapp.TakApp.TILE_SIZE;
 import static takapp.TakApp.WIDTH;
 import static takapp.TakApp.HEIGHT;
-import takapp.Tile;
 
 /**
- *
  * @author meriraja
+ * Methods for keeping track of player turn, used pieces, and for checking if a move is valid
  */
 public class GameLogic {
     
     private String playerTurn;
     private boolean gameEnded;
+    private int whitePieces;
+    private int blackPieces;
     
     public GameLogic() {
         this.playerTurn = "white";
+        this.whitePieces = 15;
+        this.blackPieces = 15;
     }
+    
+    public int getPlayerPieces() {
+        if (this.playerTurn.equals("white")) {
+            return this.whitePieces;
+        } else {
+            return this.blackPieces;
+        }
+    }
+    
+    /**
+     * Check whose turn it is to be the active player
+     * @return the active player in string form
+     */
     
     public String checkTurn() {
         
@@ -37,6 +52,22 @@ public class GameLogic {
     
     }
     
+    /**
+     * After placing a game piece, reduce the active player's pieces by one
+     */
+    
+    //todo: check that the amount does not go under zero
+    public void useOnePiece() {
+        if (this.playerTurn.equals("white")) {
+            this.whitePieces -= 1;
+        } else {
+            this.blackPieces -= 1;
+        }
+    }
+    
+    /**
+     * Switch player turn after the active player has completed an action
+     */
     public void switchTurns() {
         
         if (this.playerTurn.equals("white")) {
@@ -47,34 +78,38 @@ public class GameLogic {
 
     }
     
-    public Piece makePiece(String color, int x, int y) {
-        Piece piece = new Piece(color, x, y);
-        
-        return piece;
+    /**
+     * Check how many game pieces the active player has left to play
+     * @return the number of active player's pieces
+     */
+    public int playerPiecesLeft() {
+        if (this.playerTurn.equals("white")) {
+            return this.whitePieces;
+        } else {
+            return this.blackPieces;
+        }
     }
     
-    public void setPiece(Piece piece, int x, int y) {
-        piece.relocate(x * TILE_SIZE, y * TILE_SIZE);
-        
-        TakApp.updateBoard(piece, x, y);
-    }
-    
-    public void removePiece(Piece piece, int x, int y) {
-        TakApp.gameBoard[x][y].piece = null;
-    }
+    /**
+     * Check if attempted move is valid
+     * @param oldX the X-coordinate for the starting position of the piece being moved
+     * @param oldY the Y-coordinate for the starting position of the piece being moved
+     * @param newX the X-coordinate where the attempted move is landing
+     * @param newY the Y-coordinate where the attempted move is landing
+     * @return false if the move is invalid, true if it is valid 
+     */
 
     public boolean isValidMove(int oldX, int oldY, int newX, int newY) {
             
-            if (newX < 0 || newX > WIDTH || newY < 0 || newY > HEIGHT) {
-                return false;
-            } else if (TakApp.gameBoard[newX][newY] == null) {
-                return false;
-            } else if (TakApp.gameBoard[newX][newY].hasPiece()) {
-                return false;
-            } else {
-                return true;
-            }
-
+        if (newX < 0 || newX > WIDTH || newY < 0 || newY > HEIGHT) {
+            return false;
+        } else if (TakApp.gameBoard[newX][newY] == null) {
+            return false;
+        } else if (TakApp.gameBoard[newX][newY].hasPiece()) {
+            return false;
+        } else {
+            return true;
         }
+    }
 }
 
