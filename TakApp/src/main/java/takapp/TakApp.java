@@ -1,4 +1,4 @@
-package ui;
+package takapp;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -9,7 +9,8 @@ package ui;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.Scene;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
@@ -40,17 +41,22 @@ public class TakApp extends Application {
     public static GameLogic logic = new GameLogic();
     public static PieceService pieceservice = new PieceService(logic);
     
+    public static BorderPane root = new BorderPane();
+    public static HBox playerInfo = new HBox();
+    
     private Parent createContent() {
-        Pane root = new Pane();
 
         root.setPrefSize(WIDTH * TILE_SIZE, (HEIGHT * TILE_SIZE) + 20);
         root.getChildren().addAll(tileGroup, pieceGroup);
+        root.setBottom(playerInfo);
         
         Label playerTurn = new Label("Player turn: " + logic.checkTurn() + "  ");
         Label piecesLeft = new Label("Player pieces left: " + logic.playerPiecesLeft());
-        root.getChildren().addAll(playerTurn, piecesLeft);
+        playerInfo.getChildren().addAll(playerTurn, piecesLeft);
+        /*
         playerTurn.relocate(0, HEIGHT * TILE_SIZE);
         piecesLeft.relocate(150, HEIGHT * TILE_SIZE);
+        */
         
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
@@ -88,6 +94,12 @@ public class TakApp extends Application {
         }
         
         logic.switchTurns();
+        
+        Label newTurn = new Label("Player turn: " + logic.checkTurn() + "  ");
+        Label newPiecesLeft = new Label("Player pieces left: " + logic.playerPiecesLeft()); 
+        playerInfo.getChildren().remove(0);
+        playerInfo.getChildren().remove(0);
+        playerInfo.getChildren().addAll(newTurn, newPiecesLeft);
     }
     
     public static void main(String[] args) { 

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui;
+package takapp;
 
 import domain.GameLogic;
-import ui.Piece;
-import ui.TakApp;
-import static ui.TakApp.TILE_SIZE;
+import takapp.Piece;
+import takapp.TakApp;
+import static takapp.TakApp.TILE_SIZE;
 
 /**
  * @author meriraja
@@ -16,24 +16,29 @@ import static ui.TakApp.TILE_SIZE;
  */
 public class PieceService {
     
-        private GameLogic logic;
+    private GameLogic logic;
 
-        public PieceService (GameLogic logic) {
-            this.logic = logic;
+    public PieceService (GameLogic logic) {
+        this.logic = logic;
+    }
+    
+    /**
+    * Make a new Piece-type object 
+    * @param color the active player's color 
+    * @param x coordinate where the piece is to be placed
+    * @param y coordinate where the piece is to be place
+    * @return Piece-type object
+    */
+    public Piece makePiece(GameLogic logic, String color, int x, int y) {
+            
+        if (logic.playerHasPiecesLeft()) {
+            Piece piece = new Piece(logic, this, color, x, y);
+            logic.useOnePiece();
+                
+            return piece;
+        } else {
+            return null;
         }
-        /**
-         * Make a new Piece-type object 
-         * @param color the active player's color 
-         * @param x coordinate where the piece is to be placed
-         * @param y coordinate where the piece is to be place
-         * @return Piece-type object
-         */
-        public Piece makePiece(GameLogic logic, String color, int x, int y) {
-        Piece piece = new Piece(logic, this, color, x, y);
-        String playerTurn = logic.checkTurn();
-        logic.useOnePiece();
-        
-        return piece;
     }
     
     /**

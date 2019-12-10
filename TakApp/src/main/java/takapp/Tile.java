@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui;
+package takapp;
 
 import javafx.scene.shape.Rectangle;
 import javafx.scene.image.Image;
@@ -50,8 +50,10 @@ public class Tile extends Rectangle {
             setOnMousePressed(e -> {
                 String pieceColor = logic.checkTurn();
                 Piece piece = pieceservice.makePiece(logic, pieceColor, x, y);
-                this.piece = piece;
-                pieceservice.setPiece(piece, x, y);
+                if (piece != null) {
+                    this.piece = piece;
+                    pieceservice.setPiece(piece, x, y);
+                }
             });
             
         }

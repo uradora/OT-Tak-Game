@@ -5,10 +5,10 @@
  */
 package domain;
 
-import ui.Piece;
-import ui.TakApp;
-import static ui.TakApp.WIDTH;
-import static ui.TakApp.HEIGHT;
+import takapp.Piece;
+import takapp.TakApp;
+import static takapp.TakApp.WIDTH;
+import static takapp.TakApp.HEIGHT;
 
 /**
  * @author meriraja
@@ -100,7 +100,7 @@ public class GameLogic {
      */
 
     public boolean isValidMove(int oldX, int oldY, int newX, int newY) {
-            
+        
         if (newX < 0 || newX > WIDTH || newY < 0 || newY > HEIGHT) {
             return false;
         } else if (TakApp.gameBoard[newX][newY] == null) {
@@ -110,6 +110,28 @@ public class GameLogic {
         } else {
             return true;
         }
+    }
+        
+    public boolean playerHasPiecesLeft() {
+            
+        String activePlayer = checkTurn();
+        
+        if (activePlayer.equals("white")) {
+            if (whitePieces > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (activePlayer.equals("black")) {
+            if (blackPieces > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        
     }
 }
 

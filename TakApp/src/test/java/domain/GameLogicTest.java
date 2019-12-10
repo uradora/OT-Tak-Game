@@ -9,8 +9,8 @@ package domain;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-import ui.Piece;
-import ui.TakApp;
+import takapp.Piece;
+import takapp.TakApp;
 
 
 /**
@@ -64,6 +64,10 @@ public class GameLogicTest {
     }
     
     @Test
-    public void placingPiecesMakesPlayerPiecesDisplayLess() {
+    public void switchingTurnsAndPlacingPiecesTwiceReducesTwoBlackPieces() {
+        gamelogic.switchTurns();
+        gamelogic.useOnePiece();
+        gamelogic.useOnePiece();
+        assertTrue(gamelogic.getPlayerPieces() == 13);
     }
 }
