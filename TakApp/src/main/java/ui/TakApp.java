@@ -1,4 +1,4 @@
-package takapp;
+package ui;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,7 +15,6 @@ import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import domain.GameLogic;
-import domain.PieceService;
 
 /**
  * @author meriraja

@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain;
+package ui;
 
-import takapp.Piece;
-import takapp.TakApp;
-import static takapp.TakApp.TILE_SIZE;
+import domain.GameLogic;
+import ui.Piece;
+import ui.TakApp;
+import static ui.TakApp.TILE_SIZE;
 
 /**
  * @author meriraja

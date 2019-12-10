@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package takapp;
+package ui;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import domain.GameLogic;
-import domain.PieceService;
 
 /**
  * @author meriraja

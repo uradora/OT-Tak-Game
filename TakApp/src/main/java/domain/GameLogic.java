@@ -5,10 +5,10 @@
  */
 package domain;
 
-import takapp.Piece;
-import takapp.TakApp;
-import static takapp.TakApp.WIDTH;
-import static takapp.TakApp.HEIGHT;
+import ui.Piece;
+import ui.TakApp;
+import static ui.TakApp.WIDTH;
+import static ui.TakApp.HEIGHT;
 
 /**
  * @author meriraja

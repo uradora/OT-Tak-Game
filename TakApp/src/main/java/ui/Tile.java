@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package takapp;
+package ui;
 
 import javafx.scene.shape.Rectangle;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import domain.GameLogic;
-import domain.PieceService;
 
 /**
  * @author meriraja
