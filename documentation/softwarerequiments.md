@@ -11,9 +11,9 @@ This software is a virtual version of the game Tak, a board game implemented by 
 - GUI:
 	- The first version will have a 4x4 game board. (done)
 	- The game board will have tiles and game pieces that are movable on the board. (done)
-	- The GUI will show a track of how many game pieces the players have left and how many times each player has won.
+	- The GUI will show a track of how many game pieces the players have left (done) and how many times each player has won.
 - Game logic:
-	- The game will keep track of turn order (done) and how many game pieces the players have left. It will display this in the GUI. 
+	- The game will keep track of turn order (done) and how many game pieces the players have left. It will display this in the GUI. (done)
 	- The tiles on the game board can be clicked. If the tile represents an empty space, a game piece can be placed on it. If it has the active player's game piece on top, the pieces can be moved. (done)
 	- The first version will only feature normal game pieces, played flat on the board. (done) 
 	- After every turn, the game will check to see if any win conditions have occurred. If they have, the game ends.
