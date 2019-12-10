@@ -2,7 +2,7 @@
 
 ## Package outline 
 
-This application has two main packages. The package "domain" contains the class GameLogic, which is responsible for handling the game state and data that UI classes pass to it. The package "ui" contains all the classes that contain UI and JavaFX elements: Piece, PieceService, TakApp and Tile.
+This application has two main packages. The package "domain" contains the class GameLogic, which is responsible for handling the game state and data that UI classes pass to it. The package "takapp" contains all the classes that contain UI and JavaFX elements: Piece, PieceService, TakApp and Tile.
 
 ## UI parts and features
 
