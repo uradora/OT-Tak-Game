@@ -13,4 +13,6 @@
 | 1.12.   | 2,5    | making a new outline and revising some major functionalities  |   
 | 2.12.   | 4      | adding new tests and functionalities, major revisions of code  |   
 | 3.12.   | 3      | debugging maven, editing pom.xml, making the first github release  |   
-| total   | 28,5   |   
+| 9.12.   | 2,5    | code review, debugging, adding functionalities  |    
+| 10.12.  | 5      | architecture, javadoc, more tests, code review, more features   |    
+| total   | 36     |   
