@@ -61,6 +61,7 @@ public class PieceService {
      */
     public void removePiece(Piece piece, int x, int y) {
         TakApp.gameBoard[x][y].piece = null;
+        System.out.println("[" + x + "],[" + y + "]" + TakApp.gameBoard[x][y].piece);
     }
 
     

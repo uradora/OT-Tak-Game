@@ -92,11 +92,13 @@ public class Piece extends StackPane {
             boolean validMove = logic.isValidMove(oldX, oldY, newX, newY);
             
             if (validMove) {
+                System.out.println("move valid");
                 setX(newX);
                 setY(newY);
                 pieceservice.removePiece(this, oldX, oldY);
                 pieceservice.setPiece(this, newX, newY);
             } else {
+                System.out.println("move not valid");
                 pieceservice.setPiece(this, oldX, oldY);
             }
         });
