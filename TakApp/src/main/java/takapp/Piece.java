@@ -65,7 +65,7 @@ public class Piece extends StackPane {
             getChildren().addAll();
         }
         
-       
+       /*
         setOnMousePressed(e -> {
             oldX = this.x;
             oldY = this.y;
@@ -102,7 +102,7 @@ public class Piece extends StackPane {
                 pieceservice.setPiece(this, oldX, oldY);
             }
         });
-        
+        */
     }
     
 }

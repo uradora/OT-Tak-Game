@@ -9,33 +9,41 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import domain.GameLogic;
+import java.util.ArrayList;
 
 /**
  * @author meriraja
  * Instances of Tile-objects that make up the game board
  */
 public class Tile extends Rectangle {
-    
-    //todo: tile will have to be able to hold multiple pieces
-    
-    public Piece piece;
+        
+    public int x;
+    public int y;
+    public ArrayList<Piece> pieces;
     public Piece selectedPiece;
     
     /**
      * Checking is the specified tile holds a piece
      * @return false if the piece is not found, true otherwise
      */
-    public boolean hasPiece() {
-        return piece != null;
+    public boolean hasPieces() {
+        return !(pieces.isEmpty());
     }
 
-    /*
-    public boolean hasSelectedPiece() {
-        return selectedPiece != null;
+    public int getXcoordinate() {
+        return this.x;
     }
-    */
     
+    public int getYcoordinate() {
+        return this.y;
+    }
+    
+
     public Tile(GameLogic logic, PieceService pieceservice, int x, int y) {
+
+        this.x = x;
+        this.y = y;
+        this.pieces = new ArrayList<>();
 
         setWidth(TakApp.TILE_SIZE);
         setHeight(TakApp.TILE_SIZE);
@@ -45,17 +53,55 @@ public class Tile extends Rectangle {
         ImagePattern imagePattern = new ImagePattern(tilebg);
         setFill(imagePattern);
         
-        if (this.hasPiece() == false) {
+        //Add more javadocs here and elsewhere
+        //checkstyle and stuff
+        //too long method?
+        //jos ei vaan saa toimimaan, niin siisti koodia lopussa ja poista toimimattomat
         
-            setOnMousePressed(e -> {
-                String pieceColor = logic.checkTurn();
-                Piece piece = pieceservice.makePiece(logic, pieceColor, x, y);
-                if (piece != null) {
-                    this.piece = piece;
-                    pieceservice.setPiece(piece, x, y);
+        setOnMousePressed(e -> {
+
+            if (!(logic.hasSelectedTile())) {
+
+                if (this.hasPieces() == false) {
+
+                    String pieceColor = logic.checkTurn();
+                    Piece piece = pieceservice.makePiece(logic, pieceColor, x, y);
+                    if (piece != null) {
+                        pieceservice.setPiece(piece, x, y);
+                    }
+
+                } else if (this.hasPieces() == true) {
+                
+                    logic.setSelectedTile(this);
+                    System.out.println(logic.hasSelectedTile());
+                    System.out.println(logic.getSelectedTile().getXcoordinate()+ ", " + logic.getSelectedTile().getYcoordinate());
+                    //SOME GUI ACTION HERE, HIGHLIGHTING TILE BORDERS
                 }
-            });
+            } else if (logic.hasSelectedTile()) {
+
+                int stackLength = this.pieces.size();
+                if (this.pieces.get(stackLength - 1).getColor().equals(logic.checkTurn())) {
+                    if ((Math.abs(this.getXcoordinate()) - Math.abs(logic.getSelectedTile().getXcoordinate()) <= 1) && (Math.abs(this.getYcoordinate()) - Math.abs(logic.getSelectedTile().getYcoordinate()) <= 1)) {
+                        System.out.println("clicked tile x: " + this.getXcoordinate());
+                        System.out.println("clicked tile y : " + (this.getYcoordinate()));
+                        System.out.println("selected tile x: " + (logic.getSelectedTile().getXcoordinate()));
+                        System.out.println("selected tile y: " + (logic.getSelectedTile().getYcoordinate()));
+                        //TILES ARE ADJACENT, STACK MOVING ACTION HERE
             
-        }
+                        //CALCULATE DIRECTION
+                        //WHILE STACK LENGTH >= ..., SETPIECE TO THESE COORDINATES; THEN MOVE COORDINATES
+
+                        //MOVE STACK
+                        logic.setSelectedTile(null);
+                    } else {
+                        //ERROR, DO NOTHING
+                        return;
+                    }
+                } else {
+                    //ERROR, DO NOTHING
+                    return;
+                }
+            }
+        });
     }
 }

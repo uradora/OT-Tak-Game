@@ -59,9 +59,10 @@ public class PieceService {
      * @param x the coordinate in which the piece was
      * @param y the coordinate in which the piece was
      */
+    // fix
     public void removePiece(Piece piece, int x, int y) {
-        TakApp.gameBoard[x][y].piece = null;
-        System.out.println("[" + x + "],[" + y + "]" + TakApp.gameBoard[x][y].piece);
+        TakApp.gameBoard[x][y].pieces.remove(TakApp.gameBoard[x][y].pieces.size() - 1);
+        System.out.println("[" + x + "],[" + y + "]" + TakApp.gameBoard[x][y].pieces.remove(TakApp.gameBoard[x][y].pieces.size() - 1));
     }
 
     

@@ -5,7 +5,7 @@
  */
 package domain;
 
-import takapp.Piece;
+import takapp.Tile;
 import takapp.TakApp;
 import static takapp.TakApp.WIDTH;
 import static takapp.TakApp.HEIGHT;
@@ -17,6 +17,7 @@ import static takapp.TakApp.HEIGHT;
 public class GameLogic {
     
     private String playerTurn;
+    private Tile selectedTile;
     private boolean gameEnded;
     private int whitePieces;
     private int blackPieces;
@@ -27,6 +28,18 @@ public class GameLogic {
         this.blackPieces = 15;
     }
     
+    public boolean hasSelectedTile() {
+        return selectedTile != null;
+    }
+    
+    public void setSelectedTile(Tile tile) {
+        this.selectedTile = tile;
+    }
+    
+    public Tile getSelectedTile() {
+        return this.selectedTile;
+    }
+
     public int getPlayerPieces() {
         if (this.playerTurn.equals("white")) {
             return this.whitePieces;
@@ -99,13 +112,14 @@ public class GameLogic {
      * @return false if the move is invalid, true if it is valid 
      */
 
+    // fix
     public boolean isValidMove(int oldX, int oldY, int newX, int newY) {
         
         if (newX < 0 || newX > WIDTH || newY < 0 || newY > HEIGHT) {
             return false;
         } else if (TakApp.gameBoard[newX][newY] == null) {
             return false;
-        } else if (TakApp.gameBoard[newX][newY].hasPiece()) {
+        } else if (TakApp.gameBoard[newX][newY].hasPieces()) {
             return false;
         } else {
             return true;
