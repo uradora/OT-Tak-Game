@@ -8,7 +8,6 @@ package takapp;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
@@ -16,18 +15,18 @@ import javafx.scene.control.Button;
 import javafx.scene.Scene;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import domain.GameLogic;
-import javafx.geometry.Insets;
+import java.io.FileInputStream;
+import java.util.List;
+import java.util.Properties;
+import javafx.scene.layout.HBox;
 import javafx.geometry.Pos;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import dao.FileUserDao;
+import domain.UserService;
+import domain.User;
 
 /**
  * @author meriraja
@@ -52,12 +51,28 @@ public class TakApp extends Application {
     
     public static GameLogic logic = new GameLogic();
     public static PieceService pieceservice = new PieceService(logic);
+    public static UserService userservice;
     
     public static HBox playerInfo = new HBox();
     
     private Scene startscene;
     private Scene scene;
+    private Scene loginScene;
+    private Scene newUserScene;
     private static Stage stage;
+    
+    @Override
+    public void init() throws Exception {
+        
+        Properties properties = new Properties();
+        properties.load(new FileInputStream("config.properties"));
+        
+        String userFile = properties.getProperty("userFile");
+        
+        FileUserDao userDao = new FileUserDao(userFile);
+        
+        userservice = new UserService(userDao);
+    }
     
     public Stage getStage() {
         return stage;
@@ -65,10 +80,18 @@ public class TakApp extends Application {
     
     //todo: add options for modifying board size
     public Scene startScene() {
-        GridPane startpane = layout();
+        GridPane startpane = new GridPane();
         
-        Text title = new Text("New Game");
-        startpane.add(title, 0, 0, 2, 1);
+        startpane.setAlignment(Pos.CENTER);
+        startpane.setHgap(10);
+        startpane.setVgap(10);
+
+        
+        Label title = new Label("New Game");
+        HBox titlepane = new HBox();
+        titlepane.getChildren().add(title);
+        startpane.add(titlepane, 1, 1);
+        titlepane.setAlignment(Pos.TOP_CENTER);
         
         Button btn = new Button("Start Game (existing user)");
         startpane.add(btn, 1, 4);
@@ -77,27 +100,130 @@ public class TakApp extends Application {
         startpane.add(btn2, 2, 4);
                 
         btn.setOnAction(e -> {
-            getStage().setScene(createContent());
+            getStage().setScene(loginScene());
         });
         
         btn2.setOnAction(e -> {
-            getStage().setScene(createContent());
+            getStage().setScene(newUserScene());
         });
                         
-        startscene = new Scene(startpane, 600, 400);
+        startscene = new Scene(startpane, WIDTH * TILE_SIZE, (HEIGHT * TILE_SIZE) + 20);
         return startscene;
     }
     
-    public GridPane layout() {
-        GridPane gridPane = new GridPane();
-        gridPane.setBackground(new Background(new BackgroundFill(Color.WHITESMOKE, CornerRadii.EMPTY, Insets.EMPTY)));
-        gridPane.setAlignment(Pos.CENTER);
-        gridPane.setHgap(10);
-        gridPane.setVgap(10);
-        gridPane.setPadding(new Insets(5));
-        gridPane.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+    public Scene loginScene() {
+        GridPane loginpane = new GridPane();
+        
+        loginpane.setAlignment(Pos.CENTER);
+        loginpane.setHgap(10);
+        loginpane.setVgap(10);
 
-        return gridPane;
+        Text logintitle = new Text("Login");
+        loginpane.add(logintitle, 0, 0, 2, 1);
+        
+        Label userName = new Label("Username:");
+        loginpane.add(userName, 0, 1);
+        
+        TextField userNameField = new TextField();
+        loginpane.add(userNameField, 1, 1);
+        
+        Label password = new Label("Password:");
+        loginpane.add(password, 0, 2);
+        
+        PasswordField passField = new PasswordField();
+        passField.setPromptText("Password");
+        loginpane.add(passField, 1, 2);
+        
+        Button btn = new Button("Login");
+        loginpane.add(btn, 1, 4);
+        
+        Button backButton = new Button("Return to main menu");
+        loginpane.add(backButton, 0, 4);
+        
+        Label addUserMessage = new Label();
+        loginpane.add(addUserMessage, 1, 6);
+        
+        backButton.setOnAction(e -> {
+            getStage().setScene(startscene);
+        });
+        
+        Label loginMessage = new Label();
+        loginpane.add(loginMessage, 0, 6, 2, 2);
+        
+        btn.setOnAction(e -> {
+            if (userservice.passwordCorrect(userNameField.getText(), passField.getText())) {
+                getStage().setScene(createContent());
+            } else {
+                loginMessage.setText("Invalid username or password");
+                loginMessage.setTextFill(Color.RED);
+                userNameField.clear();
+                passField.clear();
+            }
+        });
+
+        loginScene = new Scene(loginpane, WIDTH * TILE_SIZE, (HEIGHT * TILE_SIZE) + 20);
+        return loginScene;
+    }
+    
+    public Scene newUserScene() {
+        GridPane newUserPane = new GridPane();
+        
+        newUserPane.setAlignment(Pos.CENTER);
+        newUserPane.setHgap(10);
+        newUserPane.setVgap(10);
+        
+        Text newUserTitle = new Text("Add new username");
+        newUserPane.add(newUserTitle, 0, 0, 2, 1);
+        
+        TextField newUserName = new TextField();
+        newUserPane.add(newUserName, 1, 1);
+        
+        Label passWord = new Label("Password:");
+        newUserPane.add(passWord, 0, 2);
+        
+        PasswordField passWordField = new PasswordField();
+        passWordField.setPromptText("Password:");
+        newUserPane.add(passWordField, 1, 2);
+        
+        Button addUser = new Button("Create user");
+        newUserPane.add(addUser, 1, 4);
+        
+        Button backButton = new Button("Return to main menu");
+        newUserPane.add(backButton, 0, 4);
+        
+        Label addUserMessage = new Label();
+        newUserPane.add(addUserMessage, 1, 6);
+        
+        backButton.setOnAction(e -> {
+            getStage().setScene(startscene);
+        });
+        
+        addUser.setOnAction(e -> {
+            if (newUserName.getText().length() < 4) {
+                addUserMessage.setText("Username too short");
+                addUserMessage.setTextFill(Color.RED);
+                passWordField.clear();
+            } else if (passWordField.getText().length() < 4) {
+                addUserMessage.setText("Password too short");
+                addUserMessage.setTextFill(Color.RED);
+                passWordField.clear();
+            } else if (userservice.createUser(newUserName.getText(), passWordField.getText()) == false) {
+                addUserMessage.setText("Username is already in use");
+                addUserMessage.setTextFill(Color.RED);
+                passWordField.clear();
+            } else if (userservice.createUser(newUserName.getText(), passWordField.getText()) == null) {
+                addUserMessage.setText("An error occurred");
+                addUserMessage.setTextFill(Color.RED);
+                passWordField.clear();
+            } else if (userservice.createUser(newUserName.getText(), passWordField.getText())) {
+                addUserMessage.setText("New user added");
+                addUserMessage.setTextFill(Color.GREEN);
+                getStage().setScene(loginScene());
+            }
+        });
+        
+        newUserScene = new Scene(newUserPane, WIDTH * TILE_SIZE, (HEIGHT * TILE_SIZE) + 20);
+        return newUserScene;
     }
     
     public Scene createContent() {
