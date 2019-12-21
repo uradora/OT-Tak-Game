@@ -7,6 +7,7 @@ package dao;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
 import domain.User;
@@ -21,6 +22,7 @@ public class FileUserDao implements UserDao {
     private String file;
     
     public FileUserDao(String file) throws Exception {
+        users = new ArrayList<>();
         this.file = file;
         try {
             Scanner reader = new Scanner(new File(file));

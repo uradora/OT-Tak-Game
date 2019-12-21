@@ -26,7 +26,7 @@ public class UserService {
         }
 
         User user = new User(name, password);
-        
+                
         try {
             userDao.createUser(user);
         } catch (Exception e) {

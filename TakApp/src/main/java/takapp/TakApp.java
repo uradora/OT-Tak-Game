@@ -70,7 +70,7 @@ public class TakApp extends Application {
         String userFile = properties.getProperty("userFile");
         
         FileUserDao userDao = new FileUserDao(userFile);
-        
+                
         userservice = new UserService(userDao);
     }
     
@@ -172,8 +172,11 @@ public class TakApp extends Application {
         newUserPane.setHgap(10);
         newUserPane.setVgap(10);
         
-        Text newUserTitle = new Text("Add new username");
+        Text newUserTitle = new Text("Add new user");
         newUserPane.add(newUserTitle, 0, 0, 2, 1);
+        
+        Label userName = new Label("Username:");
+        newUserPane.add(userName, 0, 1);
         
         TextField newUserName = new TextField();
         newUserPane.add(newUserName, 1, 1);
@@ -211,11 +214,7 @@ public class TakApp extends Application {
                 addUserMessage.setText("Username is already in use");
                 addUserMessage.setTextFill(Color.RED);
                 passWordField.clear();
-            } else if (userservice.createUser(newUserName.getText(), passWordField.getText()) == null) {
-                addUserMessage.setText("An error occurred");
-                addUserMessage.setTextFill(Color.RED);
-                passWordField.clear();
-            } else if (userservice.createUser(newUserName.getText(), passWordField.getText())) {
+            } else if (userservice.createUser(newUserName.getText(), passWordField.getText()) == true) {
                 addUserMessage.setText("New user added");
                 addUserMessage.setTextFill(Color.GREEN);
                 getStage().setScene(loginScene());
