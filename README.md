@@ -13,7 +13,9 @@ This software is a virtual version of the game Tak, a board game implemented by 
 
 ## Releases
 
-[Release week 5](https://github.com/uradora/OT-Tak-Game/releases/tag/viikko5)
+[Release week 5](https://github.com/uradora/OT-Tak-Game/releases/tag/viikko5)  
+[Release week 6](https://github.com/uradora/OT-Tak-Game/releases/tag/week6)
+[Release week 7](https://github.com/uradora/OT-Tak-Game/releases/tag/final)
 
 ## How to use
 
