@@ -18,7 +18,9 @@ The class UserDao has been tested using JUnit’s TemporaryFolder -rules.
 
 # Test coverage
 
+Test coverage is pictured below.
 
+![Test coverage](https://github.com/uradora/OT-Tak-Game/blob/master/documentation/Screenshot_2019-12-22%20TakApp.png)
 
 ## System testing
 
