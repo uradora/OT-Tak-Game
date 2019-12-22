@@ -16,6 +16,10 @@ GameLogic -class has been unit tested for those parts that do not contain JavaFX
 
 The class UserDao has been tested using JUnit’s TemporaryFolder -rules.
 
+# Test coverage
+
+
+
 ## System testing
 
 Manual testing has been used. All the functionalities that have been specified in the software requirements have been tested with different inputs. 
