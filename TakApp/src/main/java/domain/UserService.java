@@ -39,10 +39,10 @@ public class UserService {
                 
         try {
             userDao.createUser(user);
+            return true;
         } catch (Exception e) {
             return false;
         }
-        return true;
     }
     
     /**

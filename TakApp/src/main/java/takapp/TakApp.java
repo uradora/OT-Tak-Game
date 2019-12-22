@@ -26,10 +26,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import dao.FileUserDao;
 import domain.UserService;
-import domain.User;
-import java.io.File;
-import java.io.FileWriter;
-import java.util.Scanner;
 
 /**
  * @author meriraja

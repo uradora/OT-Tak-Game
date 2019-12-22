@@ -9,8 +9,6 @@ package domain;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-import takapp.Piece;
-import takapp.TakApp;
 
 /**
  *
@@ -27,9 +25,12 @@ public class GameLogicTest {
     }
 
     @Test 
-    public void firstTurnIsWhite() {
+    public void firstTurnIsWhiteAfterThatIsBlack() {
         String playerTurn = gamelogic.checkTurn();
         assertEquals(playerTurn, "white");
+        gamelogic.switchTurns();
+        playerTurn = gamelogic.checkTurn();
+        assertEquals(playerTurn, "black");
     }
 
     @Test
@@ -37,6 +38,14 @@ public class GameLogicTest {
         gamelogic.switchTurns();
         String playerTurn = gamelogic.checkTurn();
         assertEquals(playerTurn, "black");
+    }
+    
+    @Test
+    public void whiteTurnIsAfterBlackTurn() {
+        gamelogic.switchTurns();
+        gamelogic.switchTurns();
+        String playerTurn = gamelogic.checkTurn();
+        assertEquals(playerTurn, "white");
     }
     
     @Test
@@ -71,6 +80,19 @@ public class GameLogicTest {
     }
     
     @Test
+    public void playersHave15PiecesAtStart() {
+        assertTrue(gamelogic.playerPiecesLeft() == 15);
+        gamelogic.switchTurns();
+        assertTrue(gamelogic.playerPiecesLeft() == 15);
+    }
+    
+    @Test
+    public void whiteHas14PiecesAfterPlacingAPiece() {
+        gamelogic.useOnePiece();
+        assertTrue(gamelogic.playerPiecesLeft() == 14);
+    }
+    
+    @Test
     public void bothPlayersHavePiecesLeftAtTheBeginning() {
         assertTrue(gamelogic.playerHasPiecesLeft());
         gamelogic.switchTurns();
@@ -79,6 +101,10 @@ public class GameLogicTest {
     
     @Test
     public void zeroPiecesLeftReturnFalsePiecesLeft() {
+        while (gamelogic.getPlayerPieces() > 0) {
+            gamelogic.useOnePiece();
+        }
+        gamelogic.switchTurns();
         while (gamelogic.getPlayerPieces() > 0) {
             gamelogic.useOnePiece();
         }

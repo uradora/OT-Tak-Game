@@ -51,12 +51,9 @@ public class GameLogic {
         
         if (this.playerTurn.equals("white")) {
             return "white";
-        } else if (this.playerTurn.equals("black")) {
-            return "black";
         } else {
-            return null;
-        }
-
+            return "black";
+        } 
     }
     
     /**

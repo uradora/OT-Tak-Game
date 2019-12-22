@@ -72,6 +72,12 @@ public class FileUserDaoTest {
         assertEquals("meriraja", dao.findByUsername("meriraja").getPassword());
     }
     
+    @Test 
+    public void incorrectPasswordReturnsFalse() {
+        boolean loggedIn = dao.correctPassword("test", "yes");
+        assertFalse(loggedIn);
+    }
+    
     @After
     public void tearDown() {
         userFile.delete();
