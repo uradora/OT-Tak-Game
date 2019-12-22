@@ -2,7 +2,13 @@
 
 ## Package outline 
 
-This application has two main packages. The package "domain" contains the class GameLogic, which is responsible for handling the game state and data that UI classes pass to it. The package "takapp" contains all the classes that contain UI and JavaFX elements: Piece, PieceService, TakApp and Tile.
+The package structure of the app is outlined below.
+
+![Package structure](https://github.com/uradora/OT-Tak-Game/blob/master/documentation/packagestructure.jpg)
+
+The basic class diagram for the app is as follows.
+
+![Class diagram](https://github.com/uradora/OT-Tak-Game/blob/master/documentation/classdiagram.jpg)
 
 ## UI parts and features
 
