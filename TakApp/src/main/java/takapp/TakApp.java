@@ -17,7 +17,6 @@ import javafx.scene.Group;
 import javafx.scene.control.Label;
 import domain.GameLogic;
 import java.io.FileInputStream;
-import java.util.List;
 import java.util.Properties;
 import javafx.scene.layout.HBox;
 import javafx.geometry.Pos;
@@ -77,7 +76,6 @@ public class TakApp extends Application {
         return stage;
     }
     
-    //todo: add options for modifying board size
     public Scene startScene() {
         GridPane startpane = new GridPane();
         
@@ -143,7 +141,7 @@ public class TakApp extends Application {
             this.gameBoard = new Tile[WIDTH][HEIGHT];
 
         });
-                
+
         startscene = new Scene(startpane, 420, 400);
         return startscene;
     }
