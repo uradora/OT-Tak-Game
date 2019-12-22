@@ -9,18 +9,19 @@ This software is a virtual version of the game Tak, a board game implemented by 
 ### Basic functionality
 
 - GUI:
-	- The first version will have a 4x4 game board. (done)
-	- The game board will have tiles and game pieces that are movable on the board. (done)
-	- The GUI will show a track of how many game pieces the players have left (done) and how many times each player has won.
+	- There is a login screen and a screen for adding new users. (done)
+	- Users can select from these options for game board size: 4x4, 5x5, 6x6 and 7x7. (done)
+	- The game board will have tiles and game pieces that are placeable on the board. (done)
+	- The GUI will show a track of how many game pieces the players have left and whose turn it is to play (done).
 - Game logic:
 	- The game will keep track of turn order (done) and how many game pieces the players have left. It will display this in the GUI. (done)
-	- The tiles on the game board can be clicked. If the tile represents an empty space, a game piece can be placed on it. If it has the active player's game piece on top, the pieces can be moved. (done)
+	- The tiles on the game board can be clicked. If the tile represents an empty space, a game piece can be placed on it.  (done)
 	- The first version will only feature normal game pieces, played flat on the board. (done) 
-	- After every turn, the game will check to see if any win conditions have occurred. If they have, the game ends.
+- Data persistence:
+	- New users can be added and users can log in. This is accomplished by writing usernames and passwords into a separate file. (done)
 
 ### Functionality to be added
 
-- Options for larger game boards (5x5, 6x6, 7x7 and 8x8 in size).
+- Game end conditions are still yet to be added.
 - As the first version of the game will only feature normal flatstones, functionality for playing standing stones and capstones will have to be added later.
-- Game statistics based on player name. These could include how many times the player has won the game, how many pieces the player has placed on average, and how many moves they play in a single game on average. These could possibly be stored in a database.
 
