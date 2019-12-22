@@ -9,6 +9,7 @@ This software is a virtual version of the game Tak, a board game implemented by 
 [Architecture](https://github.com/uradora/OT-Tak-Game/blob/master/documentation/arkkitehtuuri.md)   
 [Architecture description](https://github.com/uradora/OT-Tak-Game/blob/master/documentation/architecturedescription.md)  
 [User manual](https://github.com/uradora/OT-Tak-Game/blob/master/documentation/manual.md)
+[Testing document](https://github.com/uradora/OT-Tak-Game/blob/master/documentation/testingdocument.md)
 
 ## Releases
 
