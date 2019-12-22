@@ -74,7 +74,7 @@ public class Tile extends Rectangle {
                 
                     logic.setSelectedTile(this);
                     System.out.println(logic.hasSelectedTile());
-                    System.out.println(logic.getSelectedTile().getXcoordinate()+ ", " + logic.getSelectedTile().getYcoordinate());
+                    System.out.println(logic.getSelectedTile().getXcoordinate() + ", " + logic.getSelectedTile().getYcoordinate());
                     //SOME GUI ACTION HERE, HIGHLIGHTING TILE BORDERS
                 }
             } else if (logic.hasSelectedTile()) {

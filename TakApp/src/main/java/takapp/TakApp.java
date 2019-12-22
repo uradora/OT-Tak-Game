@@ -27,6 +27,9 @@ import javafx.scene.paint.Color;
 import dao.FileUserDao;
 import domain.UserService;
 import domain.User;
+import java.io.File;
+import java.io.FileWriter;
+import java.util.Scanner;
 
 /**
  * @author meriraja
@@ -42,8 +45,8 @@ public class TakApp extends Application {
      * Creating objects for handling game logic and piece moving services.
      */
     public static final int TILE_SIZE = 100;
-    public static final int WIDTH = 4;
-    public static final int HEIGHT = 4;
+    public static int WIDTH = 4;
+    public static int HEIGHT = 4;
     public static Tile[][] gameBoard = new Tile[WIDTH][HEIGHT];
     
     private static Group tileGroup = new Group();
@@ -60,7 +63,7 @@ public class TakApp extends Application {
     private Scene loginScene;
     private Scene newUserScene;
     private static Stage stage;
-    
+        
     @Override
     public void init() throws Exception {
         
@@ -98,6 +101,18 @@ public class TakApp extends Application {
         
         Button btn2 = new Button("Start Game (new user)");
         startpane.add(btn2, 2, 4);
+        
+        Button btn4x4 = new Button("Set board size (4x4)");
+        startpane.add(btn4x4, 1, 5);
+        
+        Button btn5x5 = new Button("Set board size (5x5)");
+        startpane.add(btn5x5, 2, 5);
+        
+        Button btn6x6 = new Button("Set board size (6x6)");
+        startpane.add(btn6x6, 1, 6);
+        
+        Button btn7x7 = new Button("Set board size (7x7)");
+        startpane.add(btn7x7, 2, 6);
                 
         btn.setOnAction(e -> {
             getStage().setScene(loginScene());
@@ -106,8 +121,34 @@ public class TakApp extends Application {
         btn2.setOnAction(e -> {
             getStage().setScene(newUserScene());
         });
-                        
-        startscene = new Scene(startpane, WIDTH * TILE_SIZE, (HEIGHT * TILE_SIZE) + 20);
+        
+        btn4x4.setOnAction(e -> {
+            this.WIDTH = 4;
+            this.HEIGHT = 4;
+            this.gameBoard = new Tile[WIDTH][HEIGHT];
+        });
+        
+        btn5x5.setOnAction(e -> {
+            this.WIDTH = 5;
+            this.HEIGHT = 5;
+            this.gameBoard = new Tile[WIDTH][HEIGHT];
+        });
+        
+        btn6x6.setOnAction(e -> {
+            this.WIDTH = 6;
+            this.HEIGHT = 6;
+            this.gameBoard = new Tile[WIDTH][HEIGHT];
+
+        });
+        
+        btn7x7.setOnAction(e -> {
+            this.WIDTH = 7;
+            this.HEIGHT = 7;
+            this.gameBoard = new Tile[WIDTH][HEIGHT];
+
+        });
+                
+        startscene = new Scene(startpane, 420, 400);
         return startscene;
     }
     
@@ -161,7 +202,7 @@ public class TakApp extends Application {
             }
         });
 
-        loginScene = new Scene(loginpane, WIDTH * TILE_SIZE, (HEIGHT * TILE_SIZE) + 20);
+        loginScene = new Scene(loginpane, 420, 400);
         return loginScene;
     }
     
@@ -221,7 +262,7 @@ public class TakApp extends Application {
             }
         });
         
-        newUserScene = new Scene(newUserPane, WIDTH * TILE_SIZE, (HEIGHT * TILE_SIZE) + 20);
+        newUserScene = new Scene(newUserPane, 420, 400);
         return newUserScene;
     }
     
@@ -281,6 +322,12 @@ public class TakApp extends Application {
         playerInfo.getChildren().remove(0);
         playerInfo.getChildren().remove(0);
         playerInfo.getChildren().addAll(newTurn, newPiecesLeft);
+        
+        for (int i = 0; i < HEIGHT; i++) {
+            for (int j = 0; j < WIDTH; j++) {
+                System.out.println(gameBoard[i][j].getXcoordinate() + ", " + gameBoard[i][j].getYcoordinate() + gameBoard[i][j].hasPieces());
+            }
+        }
     }
     
     public static void main(String[] args) { 

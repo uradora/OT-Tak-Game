@@ -6,8 +6,6 @@
 package takapp;
 
 import domain.GameLogic;
-import takapp.Piece;
-import takapp.TakApp;
 import static takapp.TakApp.TILE_SIZE;
 
 /**
@@ -18,7 +16,7 @@ public class PieceService {
     
     private GameLogic logic;
 
-    public PieceService (GameLogic logic) {
+    public PieceService(GameLogic logic) {
         this.logic = logic;
     }
     

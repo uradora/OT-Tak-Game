@@ -70,4 +70,24 @@ public class GameLogicTest {
         gamelogic.useOnePiece();
         assertTrue(gamelogic.getPlayerPieces() == 13);
     }
+    
+    @Test
+    public void noSelectedTileAtFirst() {
+        assertFalse(gamelogic.hasSelectedTile());
+    }
+    
+    @Test
+    public void bothPlayersHavePiecesLeftAtTheBeginning() {
+        assertTrue(gamelogic.playerHasPiecesLeft());
+        gamelogic.switchTurns();
+        assertTrue(gamelogic.playerHasPiecesLeft());
+    }
+    
+    @Test
+    public void zeroPiecesLeftReturnFalsePiecesLeft() {
+        while (gamelogic.getPlayerPieces() > 0) {
+            gamelogic.useOnePiece();
+        }
+        assertFalse(gamelogic.playerHasPiecesLeft());
+    }
 }
