@@ -8,8 +8,8 @@ package dao;
 import java.util.List;
 import domain.User;
 /**
- *
  * @author meriraja
+ * Interface for Dao classes
  */
 public interface UserDao {
     

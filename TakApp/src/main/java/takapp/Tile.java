@@ -12,18 +12,20 @@ import domain.GameLogic;
 import java.util.ArrayList;
 
 /**
+ * Instances of Tile-objects that make up the game board.
  * @author meriraja
- * Instances of Tile-objects that make up the game board
  */
 public class Tile extends Rectangle {
         
     public int x;
     public int y;
+    public int oldX;
+    public int oldY;
     public ArrayList<Piece> pieces;
     public Piece selectedPiece;
     
     /**
-     * Checking is the specified tile holds a piece
+     * Checking is the specified tile holds a piece.
      * @return false if the piece is not found, true otherwise
      */
     public boolean hasPieces() {
@@ -38,7 +40,13 @@ public class Tile extends Rectangle {
         return this.y;
     }
     
-
+    /** Initialize the Tile object with background graphic and coordinates.
+     * Also sets methods for moving and placing pieces on tiles.
+     * @param logic gamelogic class
+     * @param pieceservice pieceservice class
+     * @param x the tile's x-coordinate
+     * @param y the tile's y-coordinate
+     */
     public Tile(GameLogic logic, PieceService pieceservice, int x, int y) {
 
         this.x = x;
@@ -52,56 +60,44 @@ public class Tile extends Rectangle {
         Image tilebg = new Image(getClass().getResourceAsStream("/images/tile.jpg"));
         ImagePattern imagePattern = new ImagePattern(tilebg);
         setFill(imagePattern);
-        
-        //Add more javadocs here and elsewhere
-        //checkstyle and stuff
-        //too long method?
-        //jos ei vaan saa toimimaan, niin siisti koodia lopussa ja poista toimimattomat
-        
-        setOnMousePressed(e -> {
-
-            if (!(logic.hasSelectedTile())) {
-
-                if (this.hasPieces() == false) {
-
-                    String pieceColor = logic.checkTurn();
-                    Piece piece = pieceservice.makePiece(logic, pieceColor, x, y);
-                    if (piece != null) {
-                        pieceservice.setPiece(piece, x, y);
-                    }
-
-                } else if (this.hasPieces() == true) {
-                
-                    logic.setSelectedTile(this);
-                    System.out.println(logic.hasSelectedTile());
-                    System.out.println(logic.getSelectedTile().getXcoordinate() + ", " + logic.getSelectedTile().getYcoordinate());
-                    //SOME GUI ACTION HERE, HIGHLIGHTING TILE BORDERS
-                }
-            } else if (logic.hasSelectedTile()) {
-
-                int stackLength = this.pieces.size();
-                if (this.pieces.get(stackLength - 1).getColor().equals(logic.checkTurn())) {
-                    if ((Math.abs(this.getXcoordinate()) - Math.abs(logic.getSelectedTile().getXcoordinate()) <= 1) && (Math.abs(this.getYcoordinate()) - Math.abs(logic.getSelectedTile().getYcoordinate()) <= 1)) {
-                        System.out.println("clicked tile x: " + this.getXcoordinate());
-                        System.out.println("clicked tile y : " + (this.getYcoordinate()));
-                        System.out.println("selected tile x: " + (logic.getSelectedTile().getXcoordinate()));
-                        System.out.println("selected tile y: " + (logic.getSelectedTile().getYcoordinate()));
-                        //TILES ARE ADJACENT, STACK MOVING ACTION HERE
             
-                        //CALCULATE DIRECTION
-                        //WHILE STACK LENGTH >= ..., SETPIECE TO THESE COORDINATES; THEN MOVE COORDINATES
-
-                        //MOVE STACK
-                        logic.setSelectedTile(null);
-                    } else {
-                        //ERROR, DO NOTHING
-                        return;
-                    }
-                } else {
-                    //ERROR, DO NOTHING
-                    return;
+        if (this.hasPieces() == false) {
+            setOnMousePressed(e -> {
+                String pieceColor = logic.checkTurn();
+                Piece piece = pieceservice.makePiece(logic, pieceColor, x, y);
+                if (piece != null) {
+                    pieceservice.setPiece(piece, x, y);
+                    this.pieces.add(piece);
                 }
-            }
-        });
+            });
+        } else if (this.hasPieces() == true) {
+                
+            setOnMousePressed(e -> {
+                this.oldX = this.getXcoordinate();
+                this.oldY = this.getYcoordinate();
+            });
+
+            setOnMouseDragged(e -> {
+                relocate(e.getSceneX(), e.getSceneY());
+            });
+        
+            setOnMouseReleased(e -> {
+            
+                double mouseX = e.getSceneX();
+                double mouseY = e.getSceneY();
+
+                int newX = (int) Math.floor(mouseX / 100.0);
+                int newY = (int) Math.floor(mouseY / 100.0);
+            
+                boolean validMove = logic.isValidMove(oldX, oldY, newX, newY);
+            
+                if (validMove) {
+                    pieceservice.removePiece(this.pieces.get(this.pieces.size() - 1), oldX, oldY);
+                    pieceservice.setPiece(this.pieces.get(this.pieces.size() - 1), newX, newY);
+                } else {
+                    pieceservice.setPiece(this.pieces.get(this.pieces.size() - 1), oldX, oldY);
+                }
+            });
+        }   
     }
 }

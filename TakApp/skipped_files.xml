@@ -6,4 +6,6 @@
 
 <suppressions>
     <suppress files="takapp.TakApp.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="dao.UserDao.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="takapp.Main.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>

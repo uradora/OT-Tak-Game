@@ -11,8 +11,8 @@ import javafx.scene.image.ImageView;
 import domain.GameLogic;
 
 /**
+ * This class creates instances of the movable graphical Piece-element that is displayed on the game board.
  * @author meriraja
- * This class creates instances of the movable graphical Piece-element that is displayed on the game board
  */
 public class Piece extends StackPane {
     
@@ -45,6 +45,8 @@ public class Piece extends StackPane {
     
     /**
      * Constructor for Piece, sets graphics and position. Piece is movable by dragging the mouse.
+     * @param logic gamelogic class
+     * @param pieceservice pieceservice class
      * @param color active player's color
      * @param x the piece's coordinate x
      * @param y the piece's coordinate y

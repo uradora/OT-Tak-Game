@@ -6,7 +6,7 @@
 package domain;
 
 /**
- *
+ * Class for creating User objects.
  * @author meriraja
  */
 public class User {
@@ -14,6 +14,11 @@ public class User {
     private String name;
     private String password;
     
+    /**
+     * Constructor for user objects.
+     * @param name given username
+     * @param password given password
+     */
     public User(String name, String password) {
         this.name = name;
         this.password = password;

@@ -12,7 +12,6 @@ import org.junit.Test;
 import takapp.Piece;
 import takapp.TakApp;
 
-
 /**
  *
  * @author meriraja
@@ -69,11 +68,6 @@ public class GameLogicTest {
         gamelogic.useOnePiece();
         gamelogic.useOnePiece();
         assertTrue(gamelogic.getPlayerPieces() == 13);
-    }
-    
-    @Test
-    public void noSelectedTileAtFirst() {
-        assertFalse(gamelogic.hasSelectedTile());
     }
     
     @Test
